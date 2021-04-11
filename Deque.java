@@ -1,8 +1,10 @@
 
 
+import edu.princeton.cs.algs4.StdOut;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.function.Consumer;
+
 
 public class Deque<Item> implements Iterable<Item> {
     //
@@ -16,14 +18,10 @@ public class Deque<Item> implements Iterable<Item> {
     private Node oldfirst;
     private Node oldlast;
 
-    @Override
-    public void forEach(Consumer<? super Item> action) {
-
-    }
 
 
     //定义一个节点类，类中包含下一个节点的指向信息，以及当前节点存储的item
-    public class Node{
+    private class Node{
         Item item;
         Node next;
     }
@@ -60,6 +58,7 @@ public class Deque<Item> implements Iterable<Item> {
        else{
            newfirst.next=oldfirst;
            oldfirst=newfirst;
+           N++;
        }
     }
 
@@ -132,8 +131,8 @@ public class Deque<Item> implements Iterable<Item> {
         }
 
         @Override
-        public void remove() throws UnsupportedOperationException {
-
+        public void remove()  {
+            throw new UnsupportedOperationException();
         }
 
         @Override
@@ -148,12 +147,28 @@ public class Deque<Item> implements Iterable<Item> {
     // unit testing (required)
     //48n+192bytes
     public static void main(String[] args){
-        Deque d=new Deque();
-        d.addFirst(4);
-        d.addLast(3);
-        Iterator a=d.iterator();
-        System.out.println(a.hasNext());
-        System.out.println(a.next());
+        Deque<Integer> deque = new Deque<Integer>();
+        for (int i = 0; i < 6; i += 2) {
+            deque.addFirst(i);
+            deque.addLast(i+1);
+        }
+        Iterator<Integer> it = deque.iterator();
+        while (it.hasNext()) StdOut.print(it.next() + " ");
+        StdOut.println(" size: " + deque.size());
+
+        for (int i = 0; i < 3; ++i) {
+            deque.removeLast();
+            deque.removeFirst();
+        }
+        StdOut.println("size: " + deque.size());
+
+        for (int i = 0; i < 6; i += 2) {
+            deque.addLast(i);
+            deque.addFirst(i+1);
+        }
+        it = deque.iterator();
+        while (it.hasNext()) StdOut.print(it.next() + " ");
+        StdOut.println(" size: " + deque.size());
     }
 
     }

@@ -1,5 +1,7 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 //要实现Iterator 类，必须实现iterator方法
 /*
@@ -121,12 +123,23 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     public static void main(String[] args) {
-        RandomizedQueue r=new RandomizedQueue();
-        r.enqueue(4);
-        r.dequeue();
-        Iterator i=r.iterator();
-        i.hasNext();
-        i.next();
+        RandomizedQueue<Integer> rq = new RandomizedQueue<Integer>();
+        for (int i = 0; i < 10; ++i)
+            rq.enqueue(i);
+        Iterator<Integer> it = rq.iterator();
+        while (it.hasNext()) StdOut.print(it.next() + " ");
+        StdOut.println(" size: " + rq.size());
+        it = rq.iterator();
+        while (it.hasNext()) StdOut.print(it.next() + " ");
+        StdOut.println(" size: " + rq.size());
+
+        for (int j = 0; j < 3; ++j) {
+            for (int i = 0; i < 3; ++i)
+                rq.dequeue();
+            it = rq.iterator();
+            while (it.hasNext()) StdOut.print(it.next() + " ");
+            StdOut.println(" size: " + rq.size());
+        }
 
     }
 }

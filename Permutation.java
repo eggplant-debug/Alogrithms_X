@@ -3,7 +3,7 @@ import edu.princeton.cs.algs4.StdRandom;
 
 public class Permutation {
     public static void main(String[] args) {
-        int num=StdIn.readInt();
+        int num= Integer.parseInt(args[0]);
         RandomizedQueue<String> a = new RandomizedQueue<String>();
 
         while(!StdIn.isEmpty()){
